@@ -1,6 +1,6 @@
-defmodule SlowpokeArc do
+defmodule SlowpokeWaffle do
   @moduledoc """
-  Provides a storage module for Arc.
+  Provides a storage module for Waffle.
 
   With this storage method, all images are stored locally first,
   then are queued to be uploaded to AWS, and after uploading is
@@ -13,30 +13,30 @@ defmodule SlowpokeArc do
   To use it, define your configured module:
 
       defmodule MyApp.Storage do
-        use SlowpokeArc
+        use SlowpokeWaffle
       end
 
   and then you can add it to config:
 
-      config :arc, storage: MyApp.Storage
+      config :waffle, storage: MyApp.Storage
 
-  By default it uses `Arc.Storage.Local` for locally saved files
-  and `Arc.Storage.S3` for uploadings, but you can change this
+  By default it uses `Waffle.Storage.Local` for locally saved files
+  and `Waffle.Storage.S3` for uploadings, but you can change this
   behavior by providing options when using. The example above is
   equivalent to the following one:
 
       defmodule MyApp.Storage do
-        use SlowpokeArc,
-          local_storage: Arc.Storage.Local,
-          inet_storage: Arc.Storage.S3
+        use SlowpokeWaffle,
+          local_storage: Waffle.Storage.Local,
+          inet_storage: Waffle.Storage.S3
       end
 
   ## Configuration
 
-  Configuration of storages is pretty much the same as with default arc
+  Configuration of storages is pretty much the same as with default waffle
   storages:
 
-      config :arc,
+      config :waffle,
         storage: MyApp.Storage,
         storage_dir: "/pictures_with_cats",
         bucket: "<your-bucket-name>",
@@ -56,12 +56,12 @@ defmodule SlowpokeArc do
         at: "/uploads",
         from: {:my_app, "uploads"}
 
-  See `SlowpokeArc.StaticPlug` for more details.
+  See `SlowpokeWaffle.StaticPlug` for more details.
   """
 
   defmacro __using__(opts) do
-    local_storage = opts[:local_storage] || Arc.Storage.Local
-    inet_storage = opts[:inet_storage] || Arc.Storage.S3
+    local_storage = opts[:local_storage] || Waffle.Storage.Local
+    inet_storage = opts[:inet_storage] || Waffle.Storage.S3
     caller_module = __CALLER__.module
 
     quote do
@@ -69,12 +69,14 @@ defmodule SlowpokeArc do
       def __inet_storage__, do: unquote(inet_storage)
 
       defmodule LocalStorageDefinition do
-        use Arc.Definition
+        @moduledoc false
+        use Waffle.Definition
         def __storage, do: unquote(local_storage)
       end
 
       defmodule InetStorageDefinition do
-        use Arc.Definition
+        @moduledoc false
+        use Waffle.Definition
         def __storage, do: unquote(inet_storage)
       end
 
@@ -82,19 +84,19 @@ defmodule SlowpokeArc do
         @moduledoc """
         StaticPlug for #{__MODULE__} storage.
 
-        See `SlowpokeArc.StaticPlug` for details.
+        See `SlowpokeWaffle.StaticPlug` for details.
         """
 
         def init(opts), do: opts
 
         def call(conn, static_opts) do
-          opts = Keyword.put(static_opts, :arc_definition, unquote(caller_module))
-          SlowpokeArc.StaticPlug.call(conn, opts)
+          opts = Keyword.put(static_opts, :waffle_definition, unquote(caller_module))
+          SlowpokeWaffle.StaticPlug.call(conn, opts)
         end
       end
 
       def put(definition, version, file_and_scope) do
-        SlowpokeArc.Storage.do_put(
+        SlowpokeWaffle.Storage.do_put(
           {definition, version, file_and_scope},
           __local_storage__(),
           __inet_storage__()
@@ -102,7 +104,7 @@ defmodule SlowpokeArc do
       end
 
       def url(definition, version, file_and_scope, opts \\ []) do
-        SlowpokeArc.Storage.do_url(
+        SlowpokeWaffle.Storage.do_url(
           {definition, version, file_and_scope},
           __local_storage__(),
           __inet_storage__(),
@@ -111,7 +113,7 @@ defmodule SlowpokeArc do
       end
 
       def delete(definition, version, file_and_scope) do
-        SlowpokeArc.Storage.do_delete(
+        SlowpokeWaffle.Storage.do_delete(
           {definition, version, file_and_scope},
           __local_storage__(),
           __inet_storage__()

@@ -1,7 +1,7 @@
-defmodule SlowpokeArcTest.BrokenInetStorage do
+defmodule SlowpokeWaffleTest.BrokenInetStorage do
   @moduledoc false
 
-  alias SlowpokeArcTest.Mediator
+  alias SlowpokeWaffleTest.Mediator
 
   def put(definition, version, {file, _} = file_and_scope) do
     Process.sleep(:infinity)

@@ -1,11 +1,11 @@
-defmodule SlowpokeArc.MixProject do
+defmodule SlowpokeWaffle.MixProject do
   use Mix.Project
 
-  @version "0.2.0"
+  @version "0.3.0"
 
   def project do
     [
-      app: :slowpoke_arc,
+      app: :slowpoke_waffle,
       version: @version,
       elixir: "~> 1.6",
       elixirc_paths: elixirc_path(Mix.env()),
@@ -13,7 +13,7 @@ defmodule SlowpokeArc.MixProject do
       deps: deps(),
 
       # Docs
-      name: "SlowpokeArc",
+      name: "SlowpokeWaffle",
       docs: docs(),
 
       # Hex
@@ -24,7 +24,7 @@ defmodule SlowpokeArc.MixProject do
 
   def application do
     [
-      mod: {SlowpokeArc.Application, []},
+      mod: {SlowpokeWaffle.Application, []},
       extra_applications: [:logger]
     ]
   end
@@ -34,7 +34,7 @@ defmodule SlowpokeArc.MixProject do
 
   defp deps do
     [
-      {:arc, ">= 0.8.0"},
+      {:waffle, "~> 1.0"},
       {:credo, "~> 1.0.5", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.0.0-rc.6", only: [:dev], runtime: false},
       {:ex_aws, "~> 2.0"},
@@ -45,9 +45,9 @@ defmodule SlowpokeArc.MixProject do
 
   defp docs do
     [
-      main: "SlowpokeArc",
+      main: "SlowpokeWaffle",
       extras: ["README.md"],
-      source_url: "https://github.com/Elonsoft/slowpoke_arc"
+      source_url: "https://github.com/Elonsoft/slowpoke_waffle"
     ]
   end
 
@@ -59,7 +59,7 @@ defmodule SlowpokeArc.MixProject do
 
   defp package do
     [
-      links: %{"GitHub" => "https://github.com/Elonsoft/slowpoke_arc"},
+      links: %{"GitHub" => "https://github.com/Elonsoft/slowpoke_waffle"},
       licenses: ["MIT"],
       files: ~w(.formatter.exs mix.exs README.md LICENSE.md lib)
     ]

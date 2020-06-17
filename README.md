@@ -1,7 +1,7 @@
-# SlowpokeArc
+# SlowpokeWaffle
 
-![](https://github.com/Elonsoft/slowpoke_arc/workflows/mix%20test/badge.svg)
-![](https://github.com/Elonsoft/slowpoke_arc/workflows/mix%20format/badge.svg)
+![](https://github.com/Elonsoft/slowpoke_waffle/workflows/test/badge.svg)
+![](https://github.com/Elonsoft/slowpoke_waffle/workflows/lint/badge.svg)
 
 Provides a storage module for Arc.
 
@@ -13,17 +13,17 @@ valid.
 
 ## Usage
 
-See [hexdocs](https://hexdocs.pm/slowpoke_arc) for details.
+See [hexdocs](https://hexdocs.pm/slowpoke_waffle) for details.
 
 ## Installation
 
-The package can be installed by adding `slowpoke_arc` to your list of
+The package can be installed by adding `slowpoke_waffle` to your list of
 dependencies in `mix.exs`:
 
 ```elixir
 def deps do
   [
-    {:slowpoke_arc, "~> 0.2"}
+    {:slowpoke_waffle, "~> 0.3"}
   ]
 end
 ```

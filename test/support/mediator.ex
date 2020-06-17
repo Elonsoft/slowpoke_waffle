@@ -1,4 +1,4 @@
-defmodule SlowpokeArcTest.Mediator do
+defmodule SlowpokeWaffleTest.Mediator do
   @moduledoc false
 
   use GenServer

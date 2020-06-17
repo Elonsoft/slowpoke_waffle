@@ -1,4 +1,4 @@
-defmodule SlowpokeArc.UploaderSupervisor do
+defmodule SlowpokeWaffle.UploaderSupervisor do
   @moduledoc false
   # Supervises all uploading and deleting tasks.
 

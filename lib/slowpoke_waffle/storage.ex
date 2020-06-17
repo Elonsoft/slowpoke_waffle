@@ -1,4 +1,4 @@
-defmodule SlowpokeArc.Storage do
+defmodule SlowpokeWaffle.Storage do
   @moduledoc false
 
   # The module that's responsible for file uploading.
@@ -6,10 +6,10 @@ defmodule SlowpokeArc.Storage do
   # Wraps logic behind implementation of `put/3`, `url/3` and `delete/3`
   # callbacks.
   #
-  # Note: There is no such a behaviour as Arc.Storage, but Arc
+  # Note: There is no such a behaviour as Waffle.Storage, but Waffle
   # follows it so shall we.
 
-  alias SlowpokeArc.{InetUploader, UploaderStatus, FileSpec}
+  alias SlowpokeWaffle.{FileSpec, InetUploader, UploaderStatus}
 
   @type storage :: atom
 

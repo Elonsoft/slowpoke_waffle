@@ -1,6 +1,6 @@
-defmodule SlowpokeArc.StaticPlug do
+defmodule SlowpokeWaffle.StaticPlug do
   @moduledoc """
-  Manages serving static files uploaded to slowpoke_arc storage.
+  Manages serving static files uploaded to slowpoke_waffle storage.
 
   It may be the case that when you returned an URL it was on local storage
   but when front-end party tried to load it, the resource was already
@@ -11,26 +11,26 @@ defmodule SlowpokeArc.StaticPlug do
   been found locally.
 
   It accepts the very same parameters `Plug.Static` does, except it
-  requires `:arc_definition` key, have which been not provided, raises
-  `MissingArcDefinition` exception. slowpoke arc storage provides
-  its own plug that passes `:arc_definition` key into options, so you
+  requires `:waffle_definition` key, have which been not provided, raises
+  `MissingWaffleDefinition` exception. slowpoke waffle storage provides
+  its own plug that passes `:waffle_definition` key into options, so you
   shouldn't use this module directly.
   """
 
-  alias Arc.Actions.Url
+  alias Waffle.Actions.Url
   alias Plug.{Conn, HTML, Static}
 
   @behaviour Plug
 
-  defmodule MissingArcDefinition do
+  defmodule MissingWaffleDefinition do
     @moduledoc """
-    An exception thrown in case an :arc_definition was not provided.
+    An exception thrown in case an :waffle_definition was not provided.
     """
 
     defexception [:message]
 
     def exception(_) do
-      %__MODULE__{message: "missing :arc_definition option in plug config"}
+      %__MODULE__{message: "missing :waffle_definition option in plug config"}
     end
   end
 
@@ -52,8 +52,8 @@ defmodule SlowpokeArc.StaticPlug do
   end
 
   defp pop_definition(opts) do
-    with {nil, _} <- Keyword.pop(opts, :arc_definition) do
-      raise MissingArcDefinition
+    with {nil, _} <- Keyword.pop(opts, :waffle_definition) do
+      raise MissingWaffleDefinition
     end
   end
 

@@ -1,11 +1,11 @@
-defmodule SlowpokeArcTest.MyImage do
+defmodule SlowpokeWaffleTest.MyImage do
   @moduledoc false
 
-  use Arc.Definition
+  use Waffle.Definition
 
   @versions [:original]
 
-  def __storage, do: SlowpokeArcTest.MyStorage
+  def __storage, do: SlowpokeWaffleTest.MyStorage
 
   def transform(:original, _) do
     {:convert, "-thumbnail 700x700\> -format png", :png}

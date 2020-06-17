@@ -1,10 +1,10 @@
-defmodule SlowpokeArc.InetUploader do
+defmodule SlowpokeWaffle.InetUploader do
   @moduledoc false
   # Manages syncronous uploads to S3.
 
   require Logger
 
-  alias SlowpokeArc.{FileSpec, Storage, UploaderSupervisor, UploaderStatus}
+  alias SlowpokeWaffle.{FileSpec, Storage, UploaderStatus, UploaderSupervisor}
 
   # Default restart timeout is 5 mins.
   @timeout 5 * 60 * 1000

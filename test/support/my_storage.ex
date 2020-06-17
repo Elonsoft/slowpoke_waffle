@@ -1,7 +1,7 @@
-defmodule SlowpokeArcTest.MyStorage do
+defmodule SlowpokeWaffleTest.MyStorage do
   @moduledoc false
 
-  use SlowpokeArc,
-    local_storage: SlowpokeArcTest.LocalStorage,
-    inet_storage: SlowpokeArcTest.InetStorage
+  use SlowpokeWaffle,
+    local_storage: SlowpokeWaffleTest.LocalStorage,
+    inet_storage: SlowpokeWaffleTest.InetStorage
 end

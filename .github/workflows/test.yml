@@ -1,4 +1,4 @@
-name: mix test
+name: test
 on:
   push:
   pull_request:

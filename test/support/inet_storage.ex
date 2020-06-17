@@ -1,7 +1,7 @@
-defmodule SlowpokeArcTest.InetStorage do
+defmodule SlowpokeWaffleTest.InetStorage do
   @moduledoc false
 
-  alias SlowpokeArcTest.Mediator
+  alias SlowpokeWaffleTest.Mediator
 
   def put(definition, version, {file, _} = file_and_scope) do
     Mediator.cast({:put_inet, {definition, version, file_and_scope}})

@@ -1,7 +1,7 @@
-defmodule SlowpokeArcTest.LocalStorage do
+defmodule SlowpokeWaffleTest.LocalStorage do
   @moduledoc false
 
-  alias SlowpokeArcTest.Mediator
+  alias SlowpokeWaffleTest.Mediator
 
   def put(definition, version, {file, _} = file_and_scope) do
     Mediator.cast({:put_local, {definition, version, file_and_scope}})

@@ -1,7 +1,7 @@
-defmodule SlowpokeArcTest.MyStorageWithBrokenInetPart do
+defmodule SlowpokeWaffleTest.MyStorageWithBrokenInetPart do
   @moduledoc false
 
-  use SlowpokeArc,
-    local_storage: SlowpokeArcTest.LocalStorage,
-    inet_storage: SlowpokeArcTest.BrokenInetStorage
+  use SlowpokeWaffle,
+    local_storage: SlowpokeWaffleTest.LocalStorage,
+    inet_storage: SlowpokeWaffleTest.BrokenInetStorage
 end

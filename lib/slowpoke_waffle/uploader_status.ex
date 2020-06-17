@@ -1,11 +1,11 @@
-defmodule SlowpokeArc.UploaderStatus do
+defmodule SlowpokeWaffle.UploaderStatus do
   @moduledoc false
   # Manages task processing accounting.
 
   use GenServer
 
   alias __MODULE__, as: State
-  alias SlowpokeArc.Storage
+  alias SlowpokeWaffle.Storage
 
   defstruct files: [], callbacks: %{}
 

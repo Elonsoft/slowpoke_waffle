@@ -1,7 +1,7 @@
-defmodule SlowpokeArcTest do
+defmodule SlowpokeWaffleTest do
   use ExUnit.Case
 
-  alias SlowpokeArcTest.{Mediator, MyImage, ImageWithBrokenInetStorage}
+  alias SlowpokeWaffleTest.{ImageWithBrokenInetStorage, Mediator, MyImage}
 
   test "correctly performs uploading" do
     Mediator.start_link(self())

@@ -24,3 +24,4 @@ slowpoke_arc-*.tar
 
 # Emacs
 *~
+/.elixir_ls/
