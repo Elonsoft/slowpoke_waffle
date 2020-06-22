@@ -17,10 +17,23 @@ defmodule SlowpokeWaffle.Storage do
   def do_put(file_spec, local_storage, inet_storage) do
     {definition, version, {file, scope}} = file_spec
 
+    new_file = maybe_new_file(file)
+
     with {:ok, file_name} <- local_storage.put(definition, version, {file, scope}) do
+      file_spec = {definition, version, {new_file, scope}}
       {:ok, _pid} = InetUploader.put(file_spec, local_storage, inet_storage)
       {:ok, file_name}
     end
+  end
+
+  defp maybe_new_file(%{path: path, is_tempfile?: true} = file) do
+    new_path = Waffle.File.generate_temporary_path()
+    File.cp!(path, new_path)
+    %{file | path: new_path}
+  end
+
+  defp maybe_new_file(file) do
+    file
   end
 
   @spec do_url(FileSpec.t(), storage, storage, list) :: String.t()
