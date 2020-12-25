@@ -66,8 +66,7 @@ defmodule SlowpokeWaffle.StaticPlug do
   end
 
   defp aws_url(path, definition) do
-    module = Module.concat(definition, InetStorageDefinition)
-    Url.url(module, path, nil, [])
+    Url.url(definition, path, nil, [])
   end
 
   defp redirect_if_not_halted_to(%Conn{halted: true} = conn, _) do
