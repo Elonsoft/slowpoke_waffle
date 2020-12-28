@@ -66,6 +66,7 @@ defmodule SlowpokeWaffle.StaticPlug do
   end
 
   defp aws_url(path, definition) do
+    definition = definition.get_waffle_definition(path)
     Url.url(definition, path, nil, [])
   end
 
